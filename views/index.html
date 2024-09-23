@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Detection</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Plant Disease Detection</h1>
+    </header>
+    
+    <section id="upload">
+        <h2>Upload a Plant Image</h2>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Upload and Predict</button>
+        </form>
+    </section>
+    
+    <section id="metrics">
+        <h2>Training Metrics</h2>
+        <h3>Accuracy</h3>
+        <ul>
+            {% if history and 'accuracy' in history %}
+                {% for acc in history['accuracy'] %}
+                    <li>{{ acc }}</li>
+                {% endfor %}
+            {% else %}
+                <li>No accuracy data available.</li>
+            {% endif %}
+        </ul>
+        <h3>Validation Accuracy</h3>
+        <ul>
+            {% if history and 'val_accuracy' in history %}
+                {% for val_acc in history['val_accuracy'] %}
+                    <li>{{ val_acc }}</li>
+                {% endfor %}
+            {% else %}
+                <li>No validation accuracy data available.</li>
+            {% endif %}
+        </ul>
+    </section>
+    <link rel="stylesheet" href="script.js">
+</body>
+</html>
